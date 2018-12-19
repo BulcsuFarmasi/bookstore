@@ -1,3 +1,6 @@
-<p>
-  book works!
-</p>
+<div class="book">
+  <h2>{{ book.title }}</h2>
+  <img [src]="book.coverImage" [alt]="book.title">
+  <p><span *ngFor="let author of book.authors">{{ author }}</span></p>
+  <p>{{ book.description }}</p>
+</div>
