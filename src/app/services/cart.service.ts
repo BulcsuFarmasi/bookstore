@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { StorageService } from './storage.service';
+import { Cart } from '../models/cart';
+
+@Injectable()
 export class CartService {
 
-  constructor() { }
+  private cart:Cart;
+
+  constructor(private storageService:StorageService) {}
+
+  loadCart () {
+    if (!this.cart) {
+      this.cart = this.storageService.get('cart');
+    }
+  }
 }
