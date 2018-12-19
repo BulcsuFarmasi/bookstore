@@ -1,8 +1,8 @@
 
 export class StorageService {
 
-    get (key:string) {
-        return localStorage.getItem(key);
+    get (key:string):any {
+        return JSON.parse(localStorage.getItem(key));
     }
 
     set(key:string, item:any) {
