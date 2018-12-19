@@ -1,6 +1,6 @@
 export interface Book {
     title:string;
-    author:string;
+    authors:string[];
     description:string;
     coverImage:string;
 }
