@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { NetworkService } from './network.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BookServiceService {
 
-  constructor() { }
+  private books:Book[];
+
+  constructor(private networkService:NetworkService) {}
 }
