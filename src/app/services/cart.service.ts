@@ -11,8 +11,16 @@ export class CartService {
 
   constructor(private storageService:StorageService) {}
   
-  addToCart(book:Book) {
+  addToCart (book:Book) {
     this.cart.books.push(book);
+    this.setCart();
+  }
+
+  removeFromCart (book:Book) {
+    const index = this.cart.books.indexOf(book);
+
+    this.cart.books.splice(index, 1);
+
     this.setCart();
   }
   
