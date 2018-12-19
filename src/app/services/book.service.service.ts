@@ -12,6 +12,10 @@ export class BookServiceService {
 
   constructor(private networkService:NetworkService) {}
 
+  getBook (id:string) {
+    
+  }
+
   getBooksBySearchTerm (searchTerm):Observable<Book[]> {
       const query:Query = { key: 'q', value: searchTerm };
 
@@ -33,4 +37,5 @@ export class BookServiceService {
         })
       )
   }
+
 }
