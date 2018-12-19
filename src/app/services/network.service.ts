@@ -13,7 +13,7 @@ export class NetworkService {
   }
 
   private constructQuery (queries:Query[]):string {
-      let queryString = '?';
+      let queryString = (queries.length > 0) ? '?' : '';
       queries.map((query, index) => {
         if(index !== 0) {
           queryString += '&';
