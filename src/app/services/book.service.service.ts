@@ -12,30 +12,34 @@ export class BookServiceService {
 
   constructor(private networkService:NetworkService) {}
 
-  getBook (id:string) {
-    
+  getBook (id:string):Observable<Book> {
+      return this.networkService.get(id, [])
+      .pipe(map(this.transformBook));
   }
 
   getBooksBySearchTerm (searchTerm):Observable<Book[]> {
       const query:Query = { key: 'q', value: searchTerm };
 
-      return this.networkService.get('', [query]).pipe(
+      return this.networkService.get('', [query])
+      .pipe(
         map((response:any) => {
-            let books:Book[] = [];
-
-            response.items.map((item:any) => {
-              let book:Book = {
-                title: item.volumeInfo.title,
-                authors: item.volumeInfo.authors,
-                description: item.description,
-                coverImage: item.imageLinks.thumbnail
-              }
-              books.push(book)
-            })
+            const books:Book[] = response.items.map(this.transformBook)
 
             return books;
         })
       )
+  }
+
+  private transformBook (item:any) {
+    const book:Book = {
+      id: item.id,
+      title: item.volumeInfo.title,
+      authors: item.volumeInfo.authors,
+      description: item.description,
+      coverImage: item.imageLinks.thumbnail
+    }
+
+    return book
   }
 
 }
