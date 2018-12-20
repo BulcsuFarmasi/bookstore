@@ -1,11 +1,11 @@
+<a routerLink="/books" class="btn btn-info btn-lg m-3">Books</a>
 <h2>Cart</h2>
-<a routerLink="/books">Books</a>
 <p *ngIf="cart.books.length === 0">The cart is empty</p>
 
-<div class="book" *ngFor="let book of cart.books">
+<div class="book border border-left-0 border-right-0 p-3" *ngFor="let book of cart.books">
   <img [src]="book.coverImage" [alt]="book.title">
-  <p>{{ book.title }}</p>
-  <p><span *ngFor="let author of book.authors">{{ author }} </span></p>
-  <button (click)="removeFromCart(book)">Remove from the cart</button>
+  <p class="font-weight-bold">{{ book.title }}</p>
+  <p class="font-weight-bold"><span *ngFor="let author of book.authors">{{ author }}<br></span></p>
+  <button (click)="removeFromCart(book)" class="btn btn-danger">Remove from the cart</button>
 </div>
-<p *ngIf="message">Removing the book from the cart is successfull</p>
+<p *ngIf="message" class="alert alert-success">Removing the book from the cart is successfull</p>

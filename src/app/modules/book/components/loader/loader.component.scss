@@ -1,0 +1,10 @@
+@keyframes rotation {
+    from {transfrom: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+
+fa-icon {
+    display: block;
+    font-size: 1.75rem;
+    animation: rotation 1s infinite;
+}
