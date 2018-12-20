@@ -11,7 +11,9 @@ export class CartService {
 
   private key = 'cart'
 
-  constructor(private storageService:StorageService) {}
+  constructor(private storageService:StorageService) {
+    this.loadCart();
+  }
   
   addToCart (book:Book) {
     this.cart.books.push(book);

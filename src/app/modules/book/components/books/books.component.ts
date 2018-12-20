@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 import { Subscription } from 'rxjs';
 
 import { Book } from 'src/app/models/book';
@@ -15,6 +17,7 @@ export class BooksComponent implements OnInit, OnDestroy {
   books:Book[];
   booksSubscription:Subscription;
   error:boolean;
+  loading:boolean;
   searched:boolean
   
   constructor(private bookService:BookService) { }
@@ -35,13 +38,16 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   onSearchTermChange (searchTerm:string) {
+    this.loading = true;
     this.booksSubscription = this.bookService.getBooksBySearchTerm(searchTerm).subscribe(
       books => {
       this.books = books;
       this.searched = true;
+      this.loading = false;
     },
     () => {
-      this.error = true
+      this.error = true;
+      this.loading = false;
       this.dismissError();
     })
   }

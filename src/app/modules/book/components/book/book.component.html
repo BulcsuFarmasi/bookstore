@@ -1,9 +1,12 @@
-<a routerLink="/books">Back to Books</a>
+<a routerLink="/books">Back to Books</a>&nbsp;
 <a routerLink="/cart">Cart</a>
+<loader *ngIf="loading"></loader>
+<p *ngIf="error">An error occured during loading the book</p>
 <div class="book" *ngIf="book">
   <h2>{{ book.title }}</h2>
   <img [src]="book.coverImage" [alt]="book.title">
   <p><span *ngFor="let author of book.authors">{{ author }}</span></p>
   <p [innerHTML]="book.description">{{ book.description }}</p>
   <button (click)="addToCart()">Add to Cart</button>
+  <p *ngIf="message">The book successfully added to the cart</p>
 </div>

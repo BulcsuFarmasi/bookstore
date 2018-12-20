@@ -14,7 +14,10 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class BookComponent implements OnInit, OnDestroy {
 
-  book:Book
+  book:Book;
+  error:boolean;
+  loading:boolean;
+  message:boolean;
   private bookSubscription:Subscription;
 
   constructor(private bookService:BookService, private route:ActivatedRoute, private cartService:CartService)  { }
@@ -22,9 +25,16 @@ export class BookComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
-    this.bookSubscription = this.bookService.getBook(id).subscribe((book) => {
+    this.loading = true;
+    this.bookSubscription = this.bookService.getBook(id).subscribe(
+      (book) => {
+        this.loading = false;
         this.book = book;
-    })
+      },
+      () => {
+        this.loading = false;
+        this.error = true;
+      })
   }
 
   ngOnDestroy () {
@@ -33,6 +43,14 @@ export class BookComponent implements OnInit, OnDestroy {
 
   addToCart () {
     this.cartService.addToCart(this.book);
+    this.message = true;
+    this.dismissMessage();
+  }
+
+  dismissMessage () {
+    setTimeout(() => {
+      this.message = false;
+    }, 5000)
   }
 
 }

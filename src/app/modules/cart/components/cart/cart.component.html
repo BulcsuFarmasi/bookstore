@@ -1,8 +1,11 @@
 <h2>Cart</h2>
 <a routerLink="/books">Books</a>
+<p *ngIf="cart.books.length === 0">The cart is empty</p>
+
 <div class="book" *ngFor="let book of cart.books">
   <img [src]="book.coverImage" [alt]="book.title">
   <p>{{ book.title }}</p>
   <p><span *ngFor="let author of book.authors">{{ author }} </span></p>
-  <button (click)="removeFromCart(book)">Remove from Cart</button>
+  <button (click)="removeFromCart(book)">Remove from the cart</button>
 </div>
+<p *ngIf="message">Removing the book from the cart is successfull</p>

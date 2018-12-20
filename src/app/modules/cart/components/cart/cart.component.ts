@@ -11,15 +11,25 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent implements OnInit {
 
   cart:Cart;
+  message:boolean;
   
   constructor(private cartService:CartService) { }
 
   ngOnInit() {
       this.cart = this.cartService.getCart();
+      this.dismissMessage();
+  }
+
+  dismissMessage () {
+    setTimeout(() => {
+      this.message = false;
+    }, 5000)
   }
 
   removeFromCart (book) {
     this.cart = this.cartService.removeFromCart(book);
+    this.message = true;
+    this
   }
 
 }
