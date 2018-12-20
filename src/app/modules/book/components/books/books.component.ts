@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -10,19 +10,39 @@ import { BookService } from 'src/app/services/book.service';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.scss']
 })
-export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit, OnDestroy {
 
-  books:Book[]
-  booksSubscription:Subscription
+  books:Book[];
+  booksSubscription:Subscription;
+  error:boolean;
+  searched:boolean
   
   constructor(private bookService:BookService) { }
 
   ngOnInit() {
   }
 
+  ngOnDestroy () {
+    if (this.booksSubscription) {
+      this.booksSubscription.unsubscribe();
+    }
+  }
+
+  dismissError () {
+    setTimeout(() => {
+      this.error = false;
+    }, 10000)
+  }
+
   onSearchTermChange (searchTerm:string) {
-    this.bookService.getBooksBySearchTerm(searchTerm).subscribe(books => {
+    this.booksSubscription = this.bookService.getBooksBySearchTerm(searchTerm).subscribe(
+      books => {
       this.books = books;
+      this.searched = true;
+    },
+    () => {
+      this.error = true
+      this.dismissError();
     })
   }
 

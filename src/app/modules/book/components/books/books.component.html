@@ -1,6 +1,8 @@
 <a routerLink="/cart">Cart</a>
 <h2>Books</h2>
 <book-filter (searchtermchange)="onSearchTermChange($event)"></book-filter>
+<p *ngIf="searched && books.length === 0">No book found for the specified search term</p>
+<p *ngIf="error">An error occured during loading the books</p>
 <div class="book" *ngFor="let book of books">
       <img [src]="book.coverImage" alt="book.title">
       <p><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
