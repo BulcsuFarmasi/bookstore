@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BookModule } from './modules/book/book.module';
+import { RoutingModule } from './modules/routing/routing.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { BookModule } from './modules/book/book.module';
   ],
   imports: [
     BrowserModule,
-    BookModule
+    BookModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

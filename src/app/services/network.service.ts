@@ -1,6 +1,9 @@
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Query } from '../models/query';
 
+@Injectable()
 export class NetworkService {
   
   private url = 'https://www.googleapis.com/books/v1/volumes/'
@@ -13,12 +16,13 @@ export class NetworkService {
   }
 
   private constructQuery (queries:Query[]):string {
+
       let queryString = (queries.length > 0) ? '?' : '';
       queries.map((query, index) => {
         if(index !== 0) {
           queryString += '&';
         }
-        queryString = query.key + '=' + query.value; 
+        queryString += query.key + '=' + query.value; 
       })
 
       return queryString;

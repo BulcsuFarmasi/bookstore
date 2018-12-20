@@ -7,7 +7,9 @@ import { Book } from '../models/book';
 @Injectable()
 export class CartService {
 
-  private cart:Cart;
+  private cart:Cart = {
+    books: []
+  };
 
   constructor(private storageService:StorageService) {}
   

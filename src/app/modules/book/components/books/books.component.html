@@ -1,8 +1,6 @@
 <book-filter (searchtermchange)="onSearchTermChange($event)"></book-filter>
-<a routerLink="['/book', book.id]">
-  <div class="book" *ngFor="let book of books">
+<div class="book" *ngFor="let book of books">
       <img [src]="book.coverImage" alt="book.title">
-      <p>{{ book.title }}</p>
-      <p><span *ngIf="let author of book.author">{{ author }} </span></p>
-  </div>
-</a>
+      <p><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
+      <p><span *ngFor="let author of book.author">{{ author }} </span></p>
+</div>

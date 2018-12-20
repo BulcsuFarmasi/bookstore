@@ -1,6 +1,8 @@
-<div class="book">
+<a routerLink="/books">Back to Books</a>
+<div class="book" *ngIf="book">
   <h2>{{ book.title }}</h2>
   <img [src]="book.coverImage" [alt]="book.title">
   <p><span *ngFor="let author of book.authors">{{ author }}</span></p>
-  <p>{{ book.description }}</p>
+  <p [innerHTML]="book.description">{{ book.description }}</p>
+  <button (click)="addToCart()">Add to Cart</button>
 </div>

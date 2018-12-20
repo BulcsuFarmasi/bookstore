@@ -9,8 +9,8 @@ import { BookComponent } from '../../components/book/book.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '/books', component: BooksComponent },
-      { path: '/book/:id', component: BookComponent  }
+      { path: 'books', component: BooksComponent },
+      { path: 'book/:id', component: BookComponent  }
     ])
   ],
   exports: [RouterModule]
