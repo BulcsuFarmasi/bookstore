@@ -21,9 +21,7 @@ export class BooksComponent implements OnInit {
   }
 
   onSearchTermChange (searchTerm:string) {
-    console.log(searchTerm);
     this.bookService.getBooksBySearchTerm(searchTerm).subscribe(books => {
-      console.log(books);
       this.books = books;
     })
   }

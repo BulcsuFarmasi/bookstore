@@ -30,7 +30,6 @@ export class BookService {
   }
 
   private transformBook (item:any) {
-    console.log(item);
     const book:Book = {
       id: item.id,
       title: item.volumeInfo.title,
@@ -38,8 +37,6 @@ export class BookService {
       description: item.volumeInfo.description,
       coverImage: item.volumeInfo.imageLinks.thumbnail
     }
-
-    console.log(book);
 
     return book;
   }
