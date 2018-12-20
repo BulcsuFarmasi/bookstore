@@ -2,6 +2,7 @@
 export class StorageService {
 
     get (key:string):any {
+        console.log(localStorage.getItem(key));
         return JSON.parse(localStorage.getItem(key));
     }
 
