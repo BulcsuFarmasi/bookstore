@@ -1,11 +1,15 @@
-<a routerLink="/cart">Cart</a>
-<h2>Books</h2>
+<a routerLink="/cart" class="btn btn-info btn-lg">Cart</a>
+<h2 class="h2 m-3">Books</h2>
 <book-filter (searchtermchange)="onSearchTermChange($event)"></book-filter>
 <loader *ngIf="loading"></loader>
 <p *ngIf="searched && books.length === 0">No book found for the specified search term</p>
 <p *ngIf="error">An error occured during loading the books</p>
-<div class="book" *ngFor="let book of books">
-      <img [src]="book.coverImage" alt="book.title">
-      <p><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
-      <p><span *ngFor="let author of book.author">{{ author }} </span></p>
+<div class="row">
+      <div class="book col-2 card m-3" *ngFor="let book of books">
+            <img [src]="book.coverImage" alt="book.title" class="card-img-top">
+            <div>
+                  <p class="card-title"><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
+                  <p class="card-text"><span *ngFor="let author of book.author">{{ author }} </span></p>
+            </div>
+      </div>
 </div>

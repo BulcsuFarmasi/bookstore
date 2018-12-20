@@ -1,6 +1,8 @@
 <form (submit)="submit()">
-  <p>
-    <input type="search" id="search" name="search" [(ngModel)]="searchTerm">
-    <input type="submit" value="Search">
+  <p class="input-group">
+    <input type="search" id="search" name="search" [(ngModel)]="searchTerm" class="form-control">
+    <span class="input-group-append">      
+      <input type="submit" value="Search" class="btn btn-info">
+    </span>
   </p>
 </form>
