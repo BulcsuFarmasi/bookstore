@@ -7,9 +7,9 @@ import { Book } from '../models/book';
 @Injectable()
 export class CartService {
 
-  private cart:Cart = {
-    books: []
-  };
+  cart:Cart;
+
+  private key = 'cart'
 
   constructor(private storageService:StorageService) {}
   
@@ -24,6 +24,8 @@ export class CartService {
     this.cart.books.splice(index, 1);
 
     this.setCart();
+
+    return this.cart;
   }
   
   getCart () {
@@ -33,11 +35,11 @@ export class CartService {
 
   private loadCart () {
     if (!this.cart) {
-      this.cart = this.storageService.get('cart');
+      this.cart = this.storageService.get(this.key);
     }
   }
 
   private setCart () {
-    this.storageService.set('cart', this.cart);
+    this.storageService.set(this.key, this.cart);
   }
 }
