@@ -25,9 +25,7 @@ export class BookService {
       return this.networkService.get('', [query])
       .pipe(
         map((response:any) => {
-            console.log(books);
             const books:Book[] = response.items.map(this.transformBook);
-            console.log(response);
             return books;
         })
       )

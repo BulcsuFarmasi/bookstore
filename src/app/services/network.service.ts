@@ -12,16 +12,18 @@ export class NetworkService {
 
   get (urlPart:string, queries:Query[]) {
     const query = this.constructQuery(queries);
+
     return this.httpClient.get(this.url + urlPart + query);
   }
 
   private constructQuery (queries:Query[]):string {
+    let queryString = (queries.length > 0) ? '?' : '';
 
-      let queryString = (queries.length > 0) ? '?' : '';
-      queries.map((query, index) => {
+    queries.map((query, index) => {
         if(index !== 0) {
           queryString += '&';
         }
+        
         queryString += query.key + '=' + query.value; 
       })
 

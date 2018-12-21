@@ -37,7 +37,7 @@ export class CartService {
 
   private loadCart () {
     if (!this.cart) {
-      this.cart = this.storageService.get(this.key);
+      this.cart = this.storageService.get(this.key) || { books: [] };
     }
   }
 

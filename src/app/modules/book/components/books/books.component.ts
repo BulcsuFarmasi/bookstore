@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
 import { Subscription } from 'rxjs';
 
 import { Book } from 'src/app/models/book';

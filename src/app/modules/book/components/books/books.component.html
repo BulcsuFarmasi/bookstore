@@ -9,7 +9,6 @@
             <img *ngIf="book.coverImage" [src]="book.coverImage" alt="book.title" class="card-img-top">
             <div>
                   <p class="card-title"><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
-                  <p class="card-text"><span *ngFor="let author of book.author">{{ author }} </span></p>
             </div>
       </div>
 </div>

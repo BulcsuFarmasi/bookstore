@@ -8,4 +8,5 @@
   <p class="font-weight-bold"><span *ngFor="let author of book.authors">{{ author }}<br></span></p>
   <button (click)="removeFromCart(book)" class="btn btn-danger">Remove from the cart</button>
 </div>
+
 <p *ngIf="message" class="alert alert-success">Removing the book from the cart is successfull</p>

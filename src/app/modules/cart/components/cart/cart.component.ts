@@ -29,7 +29,6 @@ export class CartComponent implements OnInit {
   removeFromCart (book) {
     this.cart = this.cartService.removeFromCart(book);
     this.message = true;
-    this
   }
 
 }
