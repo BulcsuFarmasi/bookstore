@@ -20,23 +20,33 @@ export class BookService {
   getBooksBySearchTerm (searchTerm):Observable<Book[]> {
       const query:Query = { key: 'q', value: searchTerm };
 
+      console.log(query);
+
       return this.networkService.get('', [query])
       .pipe(
         map((response:any) => {
-            const books:Book[] = response.items.map(this.transformBook)
+            console.log(books);
+            const books:Book[] = response.items.map(this.transformBook);
+            console.log(response);
             return books;
         })
       )
   }
 
   private transformBook (item:any) {
+    
     const book:Book = {
       id: item.id,
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors,
-      description: item.volumeInfo.description,
-      coverImage: item.volumeInfo.imageLinks.thumbnail
+      description: item.volumeInfo.description
     }
+
+    if (item.volumeInfo.imageLinks) {
+        book.coverImage = item.volumeInfo.imageLinks.thumbnail;
+    }
+
+    console.log(book);
 
     return book;
   }

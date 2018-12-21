@@ -4,7 +4,7 @@
 <p *ngIf="error">An error occured during loading the book</p>
 <div class="book" *ngIf="book">
   <h2 class="h2 m-3">{{ book.title }}</h2>
-  <img [src]="book.coverImage" [alt]="book.title">
+  <img *ngIf="book.coverImage" [src]="book.coverImage" [alt]="book.title">
   <h3 class="h3 m-3"><span *ngFor="let author of book.authors">{{ author }}<br></span></h3>
   <p [innerHTML]="book.description">{{ book.description }}</p>
   <button (click)="addToCart()" class="btn btn-info">Add to Cart</button>

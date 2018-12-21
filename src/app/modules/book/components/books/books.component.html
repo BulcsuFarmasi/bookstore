@@ -6,7 +6,7 @@
 <p *ngIf="error">An error occured during loading the books</p>
 <div class="row">
       <div class="book col-2 card m-3" *ngFor="let book of books">
-            <img [src]="book.coverImage" alt="book.title" class="card-img-top">
+            <img *ngIf="book.coverImage" [src]="book.coverImage" alt="book.title" class="card-img-top">
             <div>
                   <p class="card-title"><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
                   <p class="card-text"><span *ngFor="let author of book.author">{{ author }} </span></p>
