@@ -17,7 +17,8 @@ export class BookComponent implements OnInit, OnDestroy {
   book:Book;
   error:boolean;
   loading:boolean;
-  message:boolean;
+  addedMessage:boolean;
+  alreadyAddedMessage:boolean;
   private bookSubscription:Subscription;
 
   constructor(private bookService:BookService, private route:ActivatedRoute, private cartService:CartService)  { }
@@ -43,14 +44,25 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   addToCart () {
-    this.cartService.addToCart(this.book);
-    this.message = true;
-    this.dismissMessage();
+    try {
+      this.cartService.addToCart(this.book);
+      this.addedMessage = true;
+      this.dismissAddedMessage();
+    } catch (e) {
+      this.alreadyAddedMessage = true;
+      this.dismissAlreadyAddedMessage()    
+    }
   }
 
-  dismissMessage () {
+  private dismissAddedMessage () {
     setTimeout(() => {
-      this.message = false;
+      this.addedMessage = false;
+    }, 5000)
+  }
+
+  private dismissAlreadyAddedMessage () {
+    setTimeout(() => {
+      this.alreadyAddedMessage = false;
     }, 5000)
   }
 

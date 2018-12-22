@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart (book) {
+    if (confirm('Are you sure to remove this book from the cart?'))
     this.cart = this.cartService.removeFromCart(book);
     this.message = true;
   }

@@ -4,7 +4,7 @@
 
 <div class="book border border-left-0 border-right-0 p-3" *ngFor="let book of cart.books">
   <img [src]="book.coverImage" [alt]="book.title">
-  <p class="font-weight-bold">{{ book.title }}</p>
+  <p class="font-weight-bold"><a [routerLink]="['/book', book.id]">{{ book.title }}</a></p>
   <p class="font-weight-bold"><span *ngFor="let author of book.authors">{{ author }}<br></span></p>
   <button (click)="removeFromCart(book)" class="btn btn-danger">Remove from the cart</button>
 </div>

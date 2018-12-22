@@ -1,12 +1,16 @@
 <a routerLink="/books" class="btn btn-info btn-lg">Back to Books</a>&nbsp;
 <a routerLink="/cart" class="btn btn-info btn-lg">Cart</a>
+
 <loader *ngIf="loading"></loader>
+
 <p *ngIf="error">An error occured during loading the book</p>
+
 <div class="book" *ngIf="book">
   <h2 class="h2 m-3">{{ book.title }}</h2>
   <img *ngIf="book.coverImage" [src]="book.coverImage" [alt]="book.title">
   <h3 class="h3 m-3"><span *ngFor="let author of book.authors">{{ author }}<br></span></h3>
   <p [innerHTML]="book.description">{{ book.description }}</p>
   <button (click)="addToCart()" class="btn btn-info">Add to Cart</button>
-  <p *ngIf="message" class="alert alert-success m-2">The book successfully added to the cart</p>
+  <p *ngIf="addedMessage" class="alert alert-success m-2">The book is successfully added to the cart</p>
+  <p *ngIf="alreadyAddedMessage" class="alert alert-warning m-2">The book is already in the cart</p>
 </div>

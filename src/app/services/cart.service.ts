@@ -16,6 +16,9 @@ export class CartService {
   }
   
   addToCart (book:Book) {
+    if (this.findBookIndex(book) > -1) {
+      throw 'The books is already added to the cart';
+    }
     this.cart.books.push(book);
     this.setCart();
   }
@@ -33,6 +36,12 @@ export class CartService {
   getCart () {
     this.loadCart();
     return this.cart
+  }
+
+  private findBookIndex (book:Book) {
+    return this.cart.books.findIndex(cartBook => {
+      return cartBook.id === book.id;
+    })
   }
 
   private loadCart () {
